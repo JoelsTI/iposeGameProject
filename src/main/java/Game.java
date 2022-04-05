@@ -3,15 +3,19 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.components.CollidableComponent;
+import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.CollisionHandler;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
+
+import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class Game extends GameApplication{
 
@@ -27,6 +31,7 @@ public class Game extends GameApplication{
 
     @Override
     protected void initGame(){
+        getGameWorld().addEntityFactory(new GameFactory());
         player = FXGL.entityBuilder()
                 .at(400, 400)
                 .viewWithBBox("pepe.png")
@@ -55,7 +60,12 @@ public class Game extends GameApplication{
         FXGL.onKey(KeyCode.W, () -> player.translateY(-5));
 
         FXGL.onKey(KeyCode.S, () -> player.translateY(5));
-
+        getInput().addAction(new UserAction("Shoot") {
+            @Override
+            protected void onActionBegin() {
+                getGameWorld().spawn("Bullet", getInput().getMouseXWorld(), getAppHeight() - 10);
+            }
+        }, KeyCode.E);
     }
 
     @Override
