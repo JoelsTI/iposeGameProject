@@ -22,7 +22,8 @@ public class Game extends GameApplication{
     protected void initGame(){
         player = FXGL.entityBuilder()
                 .at(400, 400)
-                .view(new Rectangle(30, 30, Color.RED))
+                .view("pepe.png")
+                .scale(0.2, 0.2)
                 .buildAndAttach();
     }
     @Override
