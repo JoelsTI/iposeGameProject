@@ -7,6 +7,9 @@ import com.almasb.fxgl.physics.CollisionHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Game extends GameApplication{
 
@@ -29,12 +32,16 @@ public class Game extends GameApplication{
                 .scale(0.2, 0.2)
                 .type(EntityTypes.PLAYER)
                 .buildAndAttach();
-        FXGL.entityBuilder()
-                .at(200, 200)
-                .viewWithBBox(new Rectangle(20, 20, Color.WHITE))
-                .with(new CollidableComponent(true))
-                .type(EntityTypes.ENTITEIT)
-                .buildAndAttach();
+        FXGL.getGameTimer().runAtInterval(() -> {
+            int randPosX = ThreadLocalRandom.current().nextInt(60, FXGL.getGameScene().getAppWidth() -80);
+            int randPosY = ThreadLocalRandom.current().nextInt(60, FXGL.getGameScene().getAppWidth() -80);
+            FXGL.entityBuilder()
+                    .at(randPosX, randPosY)
+                    .viewWithBBox(new Rectangle(20, 20, Color.WHITE))
+                    .with(new CollidableComponent(true))
+                    .type(EntityTypes.ENTITEIT)
+                    .buildAndAttach();
+        }, Duration.millis(2000));
         FXGL.getGameScene().setBackgroundColor(Color.BLACK);
     }
     @Override
