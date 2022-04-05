@@ -22,7 +22,7 @@ public class Game extends GameApplication{
     protected void initGame(){
         player = FXGL.entityBuilder()
                 .at(400, 400)
-                .view("pepe.png")
+                .view("../resources/assets.textures/pepe.png")
                 .scale(0.2, 0.2)
                 .buildAndAttach();
     }
