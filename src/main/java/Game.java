@@ -4,6 +4,7 @@ import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.physics.CollisionHandler;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -42,19 +43,22 @@ public class Game extends GameApplication{
                     .type(EntityTypes.ENTITEIT)
                     .buildAndAttach();
         }, Duration.millis(2000));
-        FXGL.getGameScene().setBackgroundColor(Color.BLACK);
+
     }
     @Override
     protected void initInput(){
         FXGL.onKey(KeyCode.D, () -> {
             player.translateX(5);
         });
+
         FXGL.onKey(KeyCode.A, () -> {
             player.translateX(-5);
         });
+
         FXGL.onKey(KeyCode.W, () -> {
             player.translateY(-5);
         });
+
         FXGL.onKey(KeyCode.S, () -> {
             player.translateY(5);
         });
@@ -69,6 +73,18 @@ public class Game extends GameApplication{
                 entiteit.removeFromWorld();
             }
         });
+    }
+
+    @Override
+    protected void initUI(){
+        Label myText = new Label("Hello There");
+        myText.setStyle("-fx-text-fill: white");
+        myText.setTranslateX(200);
+        myText.setTranslateY(200);
+
+        FXGL.getGameScene().addUINode(myText);
+        FXGL.getGameScene().setBackgroundColor(Color.BLACK);
+
     }
     public static void main(String[] args) {
         launch(args);
