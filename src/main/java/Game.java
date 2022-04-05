@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Game extends GameApplication{
@@ -47,21 +48,13 @@ public class Game extends GameApplication{
     }
     @Override
     protected void initInput(){
-        FXGL.onKey(KeyCode.D, () -> {
-            player.translateX(5);
-        });
+        FXGL.onKey(KeyCode.D, () -> player.translateX(5));
 
-        FXGL.onKey(KeyCode.A, () -> {
-            player.translateX(-5);
-        });
+        FXGL.onKey(KeyCode.A, () -> player.translateX(-5));
 
-        FXGL.onKey(KeyCode.W, () -> {
-            player.translateY(-5);
-        });
+        FXGL.onKey(KeyCode.W, () -> player.translateY(-5));
 
-        FXGL.onKey(KeyCode.S, () -> {
-            player.translateY(5);
-        });
+        FXGL.onKey(KeyCode.S, () -> player.translateY(5));
 
     }
 
@@ -70,6 +63,7 @@ public class Game extends GameApplication{
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.ENTITEIT) {
             @Override
             protected void onCollision(Entity player, Entity entiteit) {
+                FXGL.inc("kills", +1);
                 entiteit.removeFromWorld();
             }
         });
@@ -81,10 +75,14 @@ public class Game extends GameApplication{
         myText.setStyle("-fx-text-fill: white");
         myText.setTranslateX(200);
         myText.setTranslateY(200);
-
+        myText.textProperty().bind(FXGL.getWorldProperties().intProperty("kills").asString());
         FXGL.getGameScene().addUINode(myText);
         FXGL.getGameScene().setBackgroundColor(Color.BLACK);
+    }
 
+    @Override
+    protected void initGameVars(Map<String, Object> vars){
+        vars.put("kills", 0);
     }
     public static void main(String[] args) {
         launch(args);
