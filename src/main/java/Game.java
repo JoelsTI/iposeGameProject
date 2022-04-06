@@ -65,17 +65,6 @@ public class Game extends GameApplication{
                 .with(new CollidableComponent(true))
                 .type(EntityTypes.PLAYER)
                 .buildAndAttach();
-        FXGL.getGameTimer().runAtInterval(() -> {
-            int randPosX = ThreadLocalRandom.current().nextInt(60, FXGL.getGameScene().getAppWidth() -80);
-            int randPosY = ThreadLocalRandom.current().nextInt(60, FXGL.getGameScene().getAppWidth() -80);
-            FXGL.entityBuilder()
-                    .at(randPosX, randPosY)
-                    .viewWithBBox(new Rectangle(20, 20, Color.WHITE))
-                    .with(new CollidableComponent(true))
-                    .type(EntityTypes.ENTITEIT)
-                    .buildAndAttach();
-        }, Duration.millis(2000));
-
         initScreenBounds();
 
     }
@@ -117,6 +106,7 @@ public class Game extends GameApplication{
 
     }
 
+
     @Override
     protected void initUI(){
         Label myText = new Label("Hello There");
@@ -128,15 +118,6 @@ public class Game extends GameApplication{
         FXGL.getGameScene().setBackgroundColor(Color.BLACK);
     }
 
-    private static final double SPEED = 100.0;
-    private double dx = 0.0;
-    private double dy = -SPEED;
-
-    @Override
-    public void onUpdate(double tpf){
-//        ghost.translateX(dx * tpf);
-//        ghost.translateY(dy * tpf);
-    }
 
     @Override
     protected void initGameVars(Map<String, Object> vars){

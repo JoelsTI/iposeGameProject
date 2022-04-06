@@ -11,6 +11,10 @@ public class GhostComponent extends Component {
     private final Texture left;
     private final Texture rigth;
     private final Texture upDown;
+    private static final double SPEED = 10.0;
+    private double dx = 10.0;
+    private double dy = -SPEED;
+
 
     public GhostComponent(String name, double x,double y) {
         this.name = name;
@@ -24,4 +28,11 @@ public class GhostComponent extends Component {
     public void onAdded() {
         entity.getViewComponent().addChild(upDown);
     }
+
+    @Override
+    public void onUpdate(double tpf) {
+        entity.translateX(dx* tpf);
+        entity.translateY(dy * tpf);
+    }
+
 }
