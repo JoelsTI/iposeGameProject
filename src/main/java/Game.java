@@ -33,7 +33,7 @@ public class Game extends GameApplication{
         getGameWorld().addEntityFactory(new GameFactory());
         player = FXGL.entityBuilder()
                 .at(400, 400)
-                .viewWithBBox("")
+                .viewWithBBox("among-us.gif")
                 .with(new CollidableComponent(true))
                 .type(EntityTypes.PLAYER)
                 .buildAndAttach();
@@ -70,7 +70,7 @@ public class Game extends GameApplication{
     }
     @Override
     protected void onPreInit() {
-        getSettings().setGlobalMusicVolume(0.25);
+        getSettings().setGlobalMusicVolume(100);
         loopBGM("test.mp3");
     }
     @Override
