@@ -13,18 +13,34 @@ import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.geometry.Point2D;
+import com.almasb.fxgl.physics.HitBox;
+import com.sun.javafx.geom.Point2D;
+import javafx.geometry.Orientation;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import org.jetbrains.annotations.NotNull;
 
+import javafx.scene.layout.BorderPane;
+import javax.swing.*;
+import java.awt.*;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
+import com.almasb.fxgl.physics.BoundingShape;
+import com.almasb.fxgl.entity.GameWorld;
+
+import org.jbox2d.collision.shapes.CircleShape;
+import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.FixtureDef;
+
+import javafx.scene.layout.FlowPane;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
@@ -47,12 +63,23 @@ public class Game extends GameApplication{
             }
         });
     }
+    protected void initScreenBounds() {
+        Entity walls = entityBuilder()
+                .type(EntityTypes.WALL)
+                .collidable()
+                .buildScreenBounds(150);
+
+        getGameWorld().addEntity(walls);
+    }
+
     @Override
     protected void initGame(){
-        getGameWorld().addEntityFactory(new GameFactory());
+        FXGL.getGameWorld().addEntityFactory(new GameFactory());
+        FXGL.setLevelFromMap("templateLevel.tmx");
+
         player = FXGL.entityBuilder()
                 .at(400, 400)
-                .viewWithBBox("")
+                .viewWithBBox("-up-down.png")
                 .with(new CollidableComponent(true))
                 .type(EntityTypes.PLAYER)
                 .buildAndAttach();
@@ -67,6 +94,8 @@ public class Game extends GameApplication{
                     .type(EntityTypes.ENTITEIT)
                     .buildAndAttach();
         }, Duration.millis(2000));
+
+        initScreenBounds();
 
     }
     @Override
@@ -108,6 +137,8 @@ public class Game extends GameApplication{
                 entiteit.removeFromWorld();
             }
         });
+
+
     }
 
     @Override
@@ -119,6 +150,16 @@ public class Game extends GameApplication{
         myText.textProperty().bind(FXGL.getWorldProperties().intProperty("kills").asString());
         FXGL.getGameScene().addUINode(myText);
         FXGL.getGameScene().setBackgroundColor(Color.BLACK);
+    }
+
+    private static final double SPEED = 100.0;
+    private double dx = 0.0;
+    private double dy = -SPEED;
+
+    @Override
+    public void onUpdate(double tpf){
+//        ghost.translateX(dx * tpf);
+//        ghost.translateY(dy * tpf);
     }
 
     @Override
