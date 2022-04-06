@@ -10,7 +10,6 @@ import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 
 /**
  * @author Almas Baimagambetov (almaslvl@gmail.com)
@@ -30,9 +29,6 @@ public class GameFactory implements EntityFactory {
 //
 //    return entityBuilder(data)
 //    .type(EntityTypes.PLAYER)
-
-
-
     @Spawns("Bullet")
     public Entity newBullet(SpawnData data) {
 
@@ -44,7 +40,6 @@ public class GameFactory implements EntityFactory {
                 .with(new ProjectileComponent(dir, 300))
                 .build();
     }
-
     @Spawns("Enemy")
     public Entity newEnemy(SpawnData data) {
         return FXGL.entityBuilder(data)
@@ -53,34 +48,6 @@ public class GameFactory implements EntityFactory {
                 .with(new CollidableComponent(true))
                 .build();
     }
-
-    @Spawns("platform")
-    public Entity newPlatform(SpawnData data){
-        return FXGL.entityBuilder(data)
-                .type(EntityTypes.PLATFORM)
-                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .with(new PhysicsComponent())
-                .build();
-    }
-
-    @Spawns("Muur")
-    public Entity newMuur(SpawnData data){
-        return FXGL.entityBuilder(data)
-                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .with(new PhysicsComponent())
-                .build();
-    }
-
-    @Spawns("Ghost")
-    public Entity spawnGhost(SpawnData data){
-        return FXGL.entityBuilder(data)
-                .type(EntityTypes.GHOST)
-                .bbox(new HitBox(BoundingShape.box(20, 20)))
-                .with(new GhostComponent(data.get("name"), data.getX(), data.getY()))
-                .collidable()
-                .build();
-    }
-
 
 //    @Spawns("border")
 //    public Entity Border(SpawnData data) {
