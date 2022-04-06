@@ -34,9 +34,8 @@ public class Game extends GameApplication{
         getGameWorld().addEntityFactory(new GameFactory());
         player = FXGL.entityBuilder()
                 .at(400, 400)
-                .viewWithBBox("pepe.png")
+                .viewWithBBox("")
                 .with(new CollidableComponent(true))
-                .scale(0.2, 0.2)
                 .type(EntityTypes.PLAYER)
                 .buildAndAttach();
         FXGL.getGameTimer().runAtInterval(() -> {
@@ -63,7 +62,7 @@ public class Game extends GameApplication{
         getInput().addAction(new UserAction("Shoot") {
             @Override
             protected void onActionBegin() {
-                getGameWorld().spawn("Bullet", getInput().getMouseXWorld(), getAppHeight() - 10);
+                getGameWorld().spawn("Bullet", player.getX() + 28, player.getY());
             }
         }, KeyCode.E);
     }
