@@ -113,6 +113,8 @@ public class Game extends GameApplication{
                 entiteit.removeFromWorld();
             }
         });
+
+
     }
 
     @Override

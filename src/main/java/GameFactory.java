@@ -10,6 +10,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 /**
  * @author Almas Baimagambetov (almaslvl@gmail.com)
@@ -29,6 +30,9 @@ public class GameFactory implements EntityFactory {
 //
 //    return entityBuilder(data)
 //    .type(EntityTypes.PLAYER)
+
+
+
     @Spawns("Bullet")
     public Entity newBullet(SpawnData data) {
         return FXGL.entityBuilder(data)
@@ -38,6 +42,7 @@ public class GameFactory implements EntityFactory {
                 .with(new ProjectileComponent(new Point2D(0, -1), 300))
                 .build();
     }
+
     @Spawns("Enemy")
     public Entity newEnemy(SpawnData data) {
         return FXGL.entityBuilder(data)
