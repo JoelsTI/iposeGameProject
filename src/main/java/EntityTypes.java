@@ -1,3 +1,3 @@
 public enum EntityTypes {
-    PLAYER, ENTITEIT, BULLET, ENEMY
+    PLAYER, ENTITEIT, BULLET, GHOST
 }
