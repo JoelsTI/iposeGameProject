@@ -7,7 +7,6 @@ import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.CollisionHandler;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -69,7 +68,11 @@ public class Game extends GameApplication{
         FXGL.onKey(KeyCode.E, () -> player.rotateBy(-1));
 
     }
-
+    @Override
+    protected void onPreInit() {
+        getSettings().setGlobalMusicVolume(0.25);
+        loopBGM("test.mp3");
+    }
     @Override
     protected void initPhysics(){
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.BULLET, EntityTypes.ENTITEIT) {
