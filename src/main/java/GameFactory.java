@@ -35,10 +35,9 @@ public class GameFactory implements EntityFactory {
         Point2D dir = data.get("dir");
         return FXGL.entityBuilder(data)
                 .type(EntityTypes.BULLET)
-                .viewWithBBox(new Circle(10, 2, 2, Color.BLUE))
+                .viewWithBBox(new Circle(10, 2, 10, Color.DARKRED))
                 .with(new CollidableComponent(true))
                 .with(new ProjectileComponent(dir, 300))
-
                 .build();
     }
     @Spawns("Enemy")
