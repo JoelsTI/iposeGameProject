@@ -69,10 +69,11 @@ public class Game extends GameApplication{
 
     @Override
     protected void initPhysics(){
-        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.ENTITEIT) {
+        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.BULLET, EntityTypes.ENTITEIT) {
             @Override
-            protected void onCollision(Entity player, Entity entiteit) {
+            protected void onCollision(Entity bullet, Entity entiteit) {
                 FXGL.inc("kills", +1);
+                bullet.removeFromWorld();
                 entiteit.removeFromWorld();
             }
         });
