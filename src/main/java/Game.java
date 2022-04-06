@@ -3,6 +3,7 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.SimpleGameMenu;
+import com.almasb.fxgl.core.math.Vec2;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
