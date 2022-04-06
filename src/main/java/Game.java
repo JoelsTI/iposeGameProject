@@ -61,7 +61,7 @@ public class Game extends GameApplication{
 
         player = FXGL.entityBuilder()
                 .at(400, 400)
-                .viewWithBBox("among-us.gif")
+                .viewWithBBox("-up-down.png")
                 .with(new CollidableComponent(true))
                 .type(EntityTypes.PLAYER)
                 .buildAndAttach();
@@ -124,6 +124,16 @@ public class Game extends GameApplication{
         myText.textProperty().bind(FXGL.getWorldProperties().intProperty("kills").asString());
         FXGL.getGameScene().addUINode(myText);
         FXGL.getGameScene().setBackgroundColor(Color.BLACK);
+    }
+
+    private static final double SPEED = 100.0;
+    private double dx = 0.0;
+    private double dy = -SPEED;
+
+    @Override
+    public void onUpdate(double tpf){
+//        ghost.translateX(dx * tpf);
+//        ghost.translateY(dy * tpf);
     }
 
     @Override

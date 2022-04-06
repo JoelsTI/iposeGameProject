@@ -64,6 +64,17 @@ public class GameFactory implements EntityFactory {
                 .build();
     }
 
+    @Spawns("Ghost")
+    public Entity spawnGhost(SpawnData data){
+        return FXGL.entityBuilder(data)
+                .type(EntityTypes.GHOST)
+                .bbox(new HitBox(BoundingShape.box(20, 20)))
+                .with(new GhostComponent(data.get("name"), data.getX(), data.getY()))
+                .collidable()
+                .build();
+    }
+
+
 //    @Spawns("border")
 //    public Entity Border(SpawnData data) {
 //
