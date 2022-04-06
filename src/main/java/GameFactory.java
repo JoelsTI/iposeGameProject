@@ -31,11 +31,14 @@ public class GameFactory implements EntityFactory {
 //    .type(EntityTypes.PLAYER)
     @Spawns("Bullet")
     public Entity newBullet(SpawnData data) {
+
+        Point2D dir = data.get("dir");
         return FXGL.entityBuilder(data)
                 .type(EntityTypes.BULLET)
                 .viewWithBBox(new Circle(10, 2, 2, Color.BLUE))
                 .with(new CollidableComponent(true))
-                .with(new ProjectileComponent(new Point2D(0, -1), 300))
+                .with(new ProjectileComponent(dir, 300))
+
                 .build();
     }
     @Spawns("Enemy")
