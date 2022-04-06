@@ -62,9 +62,12 @@ public class Game extends GameApplication{
         getInput().addAction(new UserAction("Shoot") {
             @Override
             protected void onActionBegin() {
-                getGameWorld().spawn("Bullet", player.getX() + 28, player.getY());
+                spawn("Bullet", player.getX() + 29, player.getY());
             }
-        }, KeyCode.E);
+        }, KeyCode.SPACE);
+        FXGL.onKey(KeyCode.Q, () -> player.rotateBy(1));
+        FXGL.onKey(KeyCode.E, () -> player.rotateBy(-1));
+
     }
 
     @Override
