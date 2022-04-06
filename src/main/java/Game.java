@@ -45,6 +45,7 @@ public class Game extends GameApplication{
         gameSettings.setHeight(10 * 70);
         gameSettings.setTitle("Javatar Game");
         gameSettings.setVersion("1.0");
+        gameSettings.setDeveloperMenuEnabled(true);
     }
 
     protected void initScreenBounds() {
