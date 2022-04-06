@@ -1,8 +1,6 @@
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
-import com.almasb.fxgl.app.scene.FXGLMenu;
-import com.almasb.fxgl.app.scene.SceneFactory;
-import com.almasb.fxgl.app.scene.SimpleGameMenu;
+import com.almasb.fxgl.core.math.Vec2;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
@@ -15,12 +13,9 @@ import javafx.geometry.Point2D;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseButton;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
@@ -37,14 +32,6 @@ public class Game extends GameApplication{
         gameSettings.setFullScreenAllowed(true);
         gameSettings.setTitle("Javatar Game");
         gameSettings.setVersion("1.0");
-
-        gameSettings.setMainMenuEnabled(true);
-        gameSettings.setSceneFactory(new SceneFactory(){
-            @NotNull
-            public FXGLMenu newMainMenu(){
-                return new JavatarMainMenu();
-            }
-        });
     }
     @Override
     protected void initGame(){
@@ -126,6 +113,5 @@ public class Game extends GameApplication{
     }
     public static void main(String[] args) {
         launch(args);
-
     }
 }
