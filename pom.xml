@@ -19,7 +19,20 @@
             <artifactId>fxgl</artifactId>
             <version>11.14</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.jbox2d</groupId>
+            <artifactId>jbox2d-library</artifactId>
+            <version>2.2.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.groep19</groupId>
+            <artifactId>iposeGameProject</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
+
+
 
     <build>
         <plugins>

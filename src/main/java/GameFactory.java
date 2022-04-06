@@ -47,6 +47,23 @@ public class GameFactory implements EntityFactory {
                 .build();
     }
 
+    @Spawns("platform")
+    public Entity newPlatform(SpawnData data){
+        return FXGL.entityBuilder(data)
+                .type(EntityTypes.PLATFORM)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .build();
+    }
+
+    @Spawns("Muur")
+    public Entity newMuur(SpawnData data){
+        return FXGL.entityBuilder(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .build();
+    }
+
 //    @Spawns("border")
 //    public Entity Border(SpawnData data) {
 //
