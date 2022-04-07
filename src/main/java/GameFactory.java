@@ -58,7 +58,7 @@ public class GameFactory implements EntityFactory {
         var effectComponent = new EffectComponent();
         var e = entityBuilder(data)
                 .type(EntityTypes.BULLET)
-                .viewWithBBox("bullet.png")
+                .viewWithBBox("arrow_01a.png")
                 .with(new ProjectileComponent(dir, 500))
                 .with(new OffscreenCleanComponent())
                 .with(new TimeComponent())
