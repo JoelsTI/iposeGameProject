@@ -47,21 +47,12 @@ public class Game extends GameApplication{
             }
         });
     }
-    protected void initScreenBounds() {
-        Entity walls = entityBuilder()
-                .type(EntityTypes.WALL)
-                .collidable()
-                .buildScreenBounds(150);
-
-        getGameWorld().addEntity(walls);
-    }
     @Override
     protected void initGame(){
-        FXGL.getGameWorld().addEntityFactory(new GameFactory());
-        FXGL.setLevelFromMap("templateLevel.tmx");
+        getGameWorld().addEntityFactory(new GameFactory());
         player = FXGL.entityBuilder()
                 .at(400, 400)
-                .viewWithBBox("-up-down.png")
+                .viewWithBBox("")
                 .with(new CollidableComponent(true))
                 .type(EntityTypes.PLAYER)
                 .buildAndAttach();
