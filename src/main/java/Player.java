@@ -10,6 +10,9 @@ public class Player extends Component{
     private String direction;
     private Integer movementspeed = 200;
 
+
+
+
     public void toLeft() {
         direction = "Left";
         System.out.println(direction);
@@ -20,6 +23,18 @@ public class Player extends Component{
         direction = "Right";
         System.out.println(direction);
         physics.setVelocityX(movementspeed);
+    }
+
+    public void toUp() {
+        direction = "Up";
+        System.out.println(direction);
+        physics.setVelocityY(-movementspeed);
+    }
+
+    public void toDown() {
+        direction = "Down";
+        System.out.println(direction);
+        physics.setVelocityY(movementspeed);
     }
 
     public void stop() {
