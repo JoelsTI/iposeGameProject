@@ -161,14 +161,17 @@ public class Game extends GameApplication{
                 if (lives == 0) {
                     FXGL.getGameController().gotoMainMenu();
                 }
-
             }
         });
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.BOSS) {
             @Override
             protected void onCollisionEnd(Entity player, Entity boss) {
                 super.onCollisionEnd(player, boss);
+                int lives = player.getComponent(Player.class).lostLife();
                 FXGL.inc("lives",-2);
+                if (lives == 0) {
+                    FXGL.getGameController().gotoMainMenu();
+                }
             }
         });
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.BULLET, EntityTypes.BOSS) {

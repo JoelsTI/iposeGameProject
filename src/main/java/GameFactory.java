@@ -104,7 +104,7 @@ public class GameFactory implements EntityFactory {
     }
 
     @Spawns("wall")
-    public Entity newMuur(SpawnData data){
+    public Entity newwall(SpawnData data){
         return FXGL.entityBuilder(data)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new PhysicsComponent())
@@ -118,7 +118,7 @@ public class GameFactory implements EntityFactory {
         physics.setBodyType(BodyType.DYNAMIC);
 
         return FXGL.entityBuilder(data)
-                .bbox(new HitBox(BoundingShape.box(40, 40)))
+                .bbox(new HitBox(BoundingShape.box(150, 150)))
                 .with(new BosComponent(data.get("name"), data.getX(), data.getY()))
                 .with(new RandomMoveComponent(new Rectangle2D(0,0,615,615), random(50,120)))
                 .with(physics)

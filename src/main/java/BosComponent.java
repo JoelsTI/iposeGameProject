@@ -11,7 +11,7 @@ public class BosComponent extends Component {
     public BosComponent(String name, double x, double y) {
         Texture left = FXGL.texture(name + "-left.png");
         Texture rigth = FXGL.texture(name + "-right.png");
-        upDown = FXGL.texture(name + "pepe.png");
+        upDown = FXGL.texture(name + "poep.png");
     }
     @Override
     public void onAdded() {
