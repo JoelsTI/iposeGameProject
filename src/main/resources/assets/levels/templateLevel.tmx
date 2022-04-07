@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="70" tileheight="70" infinite="0" nextlayerid="5" nextobjectid="21">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="70" tileheight="70" infinite="0" nextlayerid="5" nextobjectid="30">
  <editorsettings>
-  <export target="templateLevel.json" format="json"/>
+  <export format="json"/>
  </editorsettings>
  <tileset firstgid="1" name="PC Computer - The Binding of Isaac Rebirth - Caves" tilewidth="70" tileheight="70" spacing="2" tilecount="156" columns="26">
   <image source="../../../../Downloads/PC Computer - The Binding of Isaac Rebirth - Caves.png" width="1903" height="468"/>
@@ -39,16 +39,18 @@
 </data>
  </layer>
  <objectgroup id="2" name="enemy">
-  <object id="5" type="ghost" x="169.333" y="153.333" width="20" height="20"/>
-  <object id="11" type="ghost" x="321" y="196" width="20" height="20"/>
   <object id="12" type="ghost" x="570" y="459" width="20" height="20"/>
   <object id="13" type="ghost" x="251" y="514" width="20" height="20"/>
   <object id="14" type="ghost" x="798" y="185" width="20" height="20"/>
+  <object id="26" type="ghost" x="860" y="466" width="20" height="20"/>
+  <object id="27" type="ghost" x="386" y="339" width="20" height="20"/>
+  <object id="28" type="ghost" x="69" y="80" width="20" height="20"/>
  </objectgroup>
  <objectgroup id="3" name="wall">
   <object id="16" type="wall" x="1" y="0" width="41" height="702"/>
   <object id="17" type="wall" x="45" y="654" width="981" height="54"/>
   <object id="18" type="wall" x="1034" y="0" width="32" height="702"/>
   <object id="19" type="wall" x="46" y="4" width="984" height="41"/>
+  <object id="29" type="boss" x="540" y="308" width="190" height="130"/>
  </objectgroup>
 </map>

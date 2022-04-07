@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="70" tileheight="70" infinite="0" nextlayerid="4" nextobjectid="6">
+ <tileset firstgid="1" name="PC Computer - The Binding of Isaac Rebirth - Caves" tilewidth="70" tileheight="70" spacing="2" tilecount="156" columns="26">
+  <image source="PC Computer - The Binding of Isaac Rebirth - Caves.png" width="1903" height="468"/>
+ </tileset>
+ <tileset firstgid="157" name="Binding of Isaac map rechts" tilewidth="70" tileheight="70" spacing="2" tilecount="156" columns="26">
+  <image source="Binding of Isaac map rechts.png" width="1903" height="467"/>
+ </tileset>
+ <tileset firstgid="313" name="Binding of Isaac map left" tilewidth="70" tileheight="70" spacing="2" tilecount="156" columns="6">
+  <image source="Binding of Isaac map left.png" width="467" height="1903"/>
+ </tileset>
+ <tileset firstgid="469" name="Binding of Isaac map bottom" tilewidth="70" tileheight="70" spacing="2" tilecount="156" columns="26">
+  <image source="Binding of Isaac map bottom.png" width="1903" height="468"/>
+ </tileset>
+ <layer id="1" name="room Boss" width="15" height="10">
+  <data encoding="csv">
+1,178,178,178,178,178,178,178,178,178,178,178,178,178,179,
+27,259,259,259,259,259,259,259,259,259,259,259,259,259,205,
+27,259,259,259,259,259,259,259,259,259,259,259,259,259,205,
+27,259,259,259,259,259,259,259,259,259,259,259,259,259,205,
+27,259,259,259,259,259,259,259,259,259,259,259,259,259,205,
+27,259,259,259,259,259,259,259,259,259,259,259,259,259,205,
+27,259,259,259,259,259,259,259,259,259,259,259,259,259,205,
+27,259,259,259,259,259,259,259,259,259,259,259,259,259,205,
+27,259,259,259,259,259,259,259,259,259,259,259,259,259,205,
+463,464,464,464,464,464,464,464,464,464,464,464,464,464,621
+</data>
+ </layer>
+ <objectgroup id="2" name="wall">
+  <object id="1" type="wall" x="1.33333" y="0" width="56" height="700"/>
+  <object id="2" type="wall" x="1009.33" y="0" width="41.3333" height="700"/>
+  <object id="3" type="wall" x="60" y="0" width="948" height="57.3333"/>
+  <object id="4" type="wall" x="60" y="668" width="945.333" height="33.3333"/>
+ </objectgroup>
+ <objectgroup id="3" name="boss">
+  <object id="5" type="boss" x="396" y="253.333" width="304" height="261.333"/>
+ </objectgroup>
+</map>
