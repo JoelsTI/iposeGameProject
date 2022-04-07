@@ -81,6 +81,28 @@ public class Game extends GameApplication{
                 player.getComponent(Player.class).stop();
             }
         }, KeyCode.D);
+
+        getInput().addAction(new UserAction("toUp") {
+            @Override
+            protected void onAction() {
+                player.getComponent(Player.class).toUp();
+            }
+
+            protected void onActionEnd() {
+                player.getComponent(Player.class).stop();
+            }
+        }, KeyCode.W);
+
+        getInput().addAction(new UserAction("toDown") {
+            @Override
+            protected void onAction() {
+                player.getComponent(Player.class).toDown();
+            }
+
+            protected void onActionEnd() {
+                player.getComponent(Player.class).stop();
+            }
+        }, KeyCode.S);
 //        FXGL.onKey(KeyCode.D, () -> player.translateX(5));
 //
 //        FXGL.onKey(KeyCode.A, () -> player.translateX(-5));
