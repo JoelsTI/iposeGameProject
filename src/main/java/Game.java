@@ -71,16 +71,6 @@ public class Game extends GameApplication{
                 .type(EntityTypes.PLAYER)
                 .buildAndAttach();
 
-        FXGL.getGameTimer().runAtInterval(() -> {
-            int randPosX = ThreadLocalRandom.current().nextInt(60, FXGL.getGameScene().getAppWidth() -80);
-            int randPosY = ThreadLocalRandom.current().nextInt(60, FXGL.getGameScene().getAppWidth() -80);
-            FXGL.entityBuilder()
-                    .at(randPosX, randPosY)
-                    .viewWithBBox(new Rectangle(20, 20, Color.WHITE))
-                    .with(new CollidableComponent(true))
-                    .type(EntityTypes.ENTITEIT)
-                    .buildAndAttach();
-        }, Duration.millis(2000));
 
     }
     @Override
