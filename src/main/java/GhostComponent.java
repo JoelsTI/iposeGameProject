@@ -1,6 +1,9 @@
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.Texture;
+import javafx.geometry.Rectangle2D;
+
+import java.util.Random;
 
 public class GhostComponent extends Component {
 
@@ -11,8 +14,8 @@ public class GhostComponent extends Component {
     private final Texture left;
     private final Texture rigth;
     private final Texture upDown;
-    private static final double SPEED = 10.0;
-    private double dx = 10.0;
+    private static final double SPEED = 100.0;
+    private double dx = 100.0;
     private double dy = -SPEED;
 
 
@@ -29,10 +32,19 @@ public class GhostComponent extends Component {
         entity.getViewComponent().addChild(upDown);
     }
 
+    Random rand = new Random();
+    int upperbound =25;
+    int int_random = rand.nextInt(upperbound);
+
     @Override
     public void onUpdate(double tpf) {
-        entity.translateX(dx* tpf);
-        entity.translateY(dy * tpf);
+        if (entity.getX() < 100 ){
+            entity.translateX(dx * tpf);
+        }
+        else entity.translateX(-dx * tpf);
+        if(entity.getY() < 100){
+            entity.translateY(dy * tpf);
+        }
+        else entity.translateY(-dy * tpf);
     }
-
 }
