@@ -32,10 +32,15 @@ public class GameFactory implements EntityFactory {
 
     @Spawns("Player")
     public Entity newPlayer(SpawnData data){
+        PhysicsComponent physics = new PhysicsComponent();
+        physics.setBodyType(BodyType.DYNAMIC);
+
         return FXGL.entityBuilder(data)
                 .viewWithBBox("pepe.png")
                 .scale(0.2,0.2)
+                .with(physics)
                 .with(new CollidableComponent(true))
+                .with(new Player())
                 .type(EntityTypes.PLAYER)
                 .build();
     }
@@ -51,14 +56,7 @@ public class GameFactory implements EntityFactory {
                 .with(new ProjectileComponent(dir, 300))
                 .build();
     }
-    @Spawns("Enemy")
-    public Entity newEnemy(SpawnData data) {
-        return FXGL.entityBuilder(data)
-                .type(EntityTypes.ENEMY)
-                .viewWithBBox(new Rectangle(40, 40, Color.RED))
-                .with(new CollidableComponent(true))
-                .build();
-    }
+
     @Spawns("platform")
     public Entity newPlatform(SpawnData data){
         return FXGL.entityBuilder(data)
