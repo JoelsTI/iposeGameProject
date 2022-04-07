@@ -24,7 +24,7 @@ public class GhostComponent extends Component {
         entity.getViewComponent().addChild(upDown);
 
         FXGL.getGameTimer().runAtInterval(() -> {
-            if (entity == null) {
+            if(entity == null){
                 return;
             }
             PhysicsComponent physics = entity.getComponent(PhysicsComponent.class);
