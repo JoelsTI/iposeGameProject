@@ -51,7 +51,14 @@ public class GameFactory implements EntityFactory {
                 .with(new ProjectileComponent(dir, 300))
                 .build();
     }
-
+    @Spawns("Enemy")
+    public Entity newEnemy(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(EntityTypes.ENEMY)
+                .viewWithBBox(new Rectangle(40, 40, Color.RED))
+                .with(new CollidableComponent(true))
+                .build();
+    }
     @Spawns("platform")
     public Entity newPlatform(SpawnData data){
         return FXGL.entityBuilder(data)
