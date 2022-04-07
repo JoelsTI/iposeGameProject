@@ -128,7 +128,7 @@ public class Game extends GameApplication{
         }, KeyCode.E);
         getInput().addAction(new UserAction("bullet") {
             @Override
-            protected void onActionBegin() {
+            protected void onAction() {
                 player.getComponent(Player.class).shoot();
             }
 
@@ -166,12 +166,8 @@ public class Game extends GameApplication{
             FXGL.getGameController().gotoMainMenu();
             Duration userTime = Duration.seconds(getd("levelTime") );
             tijd = userTime.toSeconds();
+            tijd = Math.round(tijd);
             System.out.println(tijd);
-
-        }
-        else if(this.levelCounter == 3 && kills == 40 ){
-            this.levelCounter++;
-
         }
 
 
