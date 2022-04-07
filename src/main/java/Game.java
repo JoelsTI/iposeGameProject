@@ -3,6 +3,7 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.SimpleGameMenu;
+import com.almasb.fxgl.core.collection.PropertyMap;
 import com.almasb.fxgl.core.math.Vec2;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
@@ -33,6 +34,7 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 public class Game extends GameApplication{
 
     private Entity player;
+    private int levelCounter = 1;
 
     @Override
     protected void initSettings(GameSettings gameSettings) {
@@ -55,7 +57,7 @@ public class Game extends GameApplication{
     @Override
     protected void initGame(){
         FXGL.getGameWorld().addEntityFactory(new GameFactory());
-        FXGL.setLevelFromMap("templateLevel.tmx");
+        FXGL.setLevelFromMap("level" + this.levelCounter + ".tmx");
         player = getGameWorld().spawn("player");
 
 
@@ -137,9 +139,28 @@ public class Game extends GameApplication{
     }
     @Override
     protected void onPreInit() {
-        getSettings().setGlobalMusicVolume(30);
+        getSettings().setGlobalMusicVolume(0);
         loopBGM("test.mp3");
     }
+
+    @Override
+    public void onUpdate(double tpf) {
+       int kills = FXGL.getWorldProperties().getInt("kills");
+        if(this.levelCounter == 1 && kills >= 6 ){
+            this.levelCounter++;
+            System.out.println("Ga naar het volgende level!");
+            FXGL.setLevelFromMap("level" + this.levelCounter + ".tmx");
+            player = getGameWorld().spawn("player");
+        }
+        else if(this.levelCounter == 2 && kills == 20 ){
+            this.levelCounter++;
+            System.out.println("Ga naar het volgende level!");
+            FXGL.setLevelFromMap("level" + this.levelCounter + ".tmx");
+            player = getGameWorld().spawn("player");
+        }
+
+    }
+
     @Override
     protected void initPhysics(){
         //gravity 0 voor 2d game
@@ -188,15 +209,15 @@ public class Game extends GameApplication{
     protected void initUI(){
         Label myText = new Label();
         Label hp = new Label();
-
-        hp.setTranslateY(220);
-        hp.setTranslateX(200);
+        Label hpText = new Label();
+        hp.setTranslateY(10);
+        hp.setTranslateX(10);
         hp.setStyle("-fx-text-fill: white");
         hp.textProperty().bind(FXGL.getWorldProperties().intProperty("lives").asString());
 
         myText.setStyle("-fx-text-fill: white");
-        myText.setTranslateX(200);
-        myText.setTranslateY(200);
+        myText.setTranslateX(10);
+        myText.setTranslateY(30);
         myText.textProperty().bind(FXGL.getWorldProperties().intProperty("kills").asString());
 
         FXGL.getGameScene().addUINode(myText);

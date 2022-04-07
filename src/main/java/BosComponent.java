@@ -29,22 +29,18 @@ public class BosComponent extends Component {
             switch (movementRandom) {
                 case 0:
                     physics.setVelocityY(100);
-                    System.out.println("Hoger");
                     break;
 
                     case 1:
                         physics.setVelocityY(-100);
-                        System.out.println("Lager");
                         break;
 
                     case 2:
                         physics.setVelocityX(100);
-                        System.out.println("Rechts");
                         break;
 
                     case 3:
                         physics.setVelocityX(-100);
-                        System.out.println("Links");
                         break;
 
                 }

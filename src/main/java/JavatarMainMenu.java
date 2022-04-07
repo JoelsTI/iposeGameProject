@@ -31,7 +31,7 @@ public class JavatarMainMenu extends FXGLMenu {
     public BorderPane createLayout() {
         BorderPane borderPane = new BorderPane();
         TextField textField = new TextField ();
-        Button btnStart = new Button("Lekker spelen");
+        Button btnStart = new Button("Play");
         Button btnQuit = new Button("Quit");
         Label label = new Label("Username:");
         VBox vbox = new VBox(8);
@@ -39,7 +39,7 @@ public class JavatarMainMenu extends FXGLMenu {
         textField.setMaxWidth(150);
         vbox.getChildren().addAll(label, textField, btnStart, btnQuit);
         vbox.setAlignment(Pos.CENTER);
-        borderPane.setStyle("-fx-background-image: url('https://www.atiramhotels.com/wp-content/uploads/2018/12/grey-dark-vintage-background-texture-299176_1080x675.jpg')");
+        borderPane.setStyle("-fx-background-image: url('https://images5.alphacoders.com/807/thumb-1920-807117.jpg')");
         borderPane.setMinWidth(FXGL.getAppWidth());
         borderPane.setMinHeight(FXGL.getAppHeight());
         btnStart.setOnAction(e ->{

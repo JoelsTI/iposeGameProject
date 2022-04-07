@@ -62,7 +62,7 @@ public class GameFactory implements EntityFactory {
         var effectComponent = new EffectComponent();
         var e = entityBuilder(data)
                 .type(EntityTypes.BULLET)
-                .viewWithBBox("arrow_01a.png")
+                .viewWithBBox("tear.png")
                 .with(new ProjectileComponent(dir, 500))
                 .with(new OffscreenCleanComponent())
                 .with(new TimeComponent())
@@ -133,6 +133,7 @@ public class GameFactory implements EntityFactory {
 
         return FXGL.entityBuilder(data)
                 .bbox(new HitBox(BoundingShape.box(20, 20)))
+                .scale(2, 2)
                 .with(new GhostComponent(data.get("name"), data.getX(), data.getY()))
                 .with(new RandomMoveComponent(new Rectangle2D(0,0,615,615), random(50,120)))
                 .with(physics)

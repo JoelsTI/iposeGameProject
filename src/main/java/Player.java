@@ -19,25 +19,21 @@ public class Player extends Component{
 
     public void toLeft() {
         direction = "left";
-        System.out.println(direction);
         physics.setVelocityX(-movementspeed);
     }
 
     public void toRight() {
         direction = "right";
-        System.out.println(direction);
         physics.setVelocityX(movementspeed);
     }
 
     public void toUp() {
         direction = "up";
-        System.out.println(direction);
         physics.setVelocityY(-movementspeed);
     }
 
     public void toDown() {
         direction = "down";
-        System.out.println(direction);
         physics.setVelocityY(movementspeed);
     }
 
