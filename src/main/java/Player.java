@@ -56,9 +56,7 @@ public class Player extends Component{
 
     public void shoot() {
         Point2D center = entity.getCenter().subtract(37/2.0, 13/2.0);
-
         Vec2 dir = Vec2.fromAngle(entity.getRotation() - 90);
-
         spawn("bullet", new SpawnData(center.getX(), center.getY()).put("dir", dir.toPoint2D()));
     }
 

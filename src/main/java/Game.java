@@ -103,6 +103,19 @@ public class Game extends GameApplication{
                 player.getComponent(Player.class).stop();
             }
         }, KeyCode.S);
+        getInput().addAction(new UserAction("r_left") {
+            @Override
+            protected void onAction() {
+                player.getComponent(Player.class).rotateLeft();
+            }
+        }, KeyCode.Q);
+        getInput().addAction(new UserAction("r_right") {
+            @Override
+            protected void onAction() {
+                player.getComponent(Player.class).rotateRight();
+            }
+
+        }, KeyCode.E);
         getInput().addAction(new UserAction("bullet") {
             @Override
             protected void onActionBegin() {
@@ -113,7 +126,6 @@ public class Game extends GameApplication{
                 player.getComponent(Player.class).stop();
             }
         }, KeyCode.SPACE);
-
     }
     @Override
     protected void onPreInit() {
@@ -124,7 +136,6 @@ public class Game extends GameApplication{
     protected void initPhysics(){
         //gravity 0 voor 2d game
         getPhysicsWorld().setGravity(0,0);
-
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.BULLET, EntityTypes.GHOST) {
             @Override
             protected void onCollision(Entity bullet, Entity ghost) {
