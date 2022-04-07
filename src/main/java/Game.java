@@ -61,13 +61,14 @@ public class Game extends GameApplication{
     protected void initGame(){
         FXGL.getGameWorld().addEntityFactory(new GameFactory());
         FXGL.setLevelFromMap("templateLevel.tmx");
+//        FXGL.spawn("Player");
 
-        player = FXGL.entityBuilder()
-                .at(400, 400)
-                .viewWithBBox("-up-down.png")
-                .with(new CollidableComponent(true))
-                .type(EntityTypes.PLAYER)
-                .buildAndAttach();
+//        player = FXGL.entityBuilder()
+//                .at(400, 400)
+//                .viewWithBBox("-up-down.png")
+//                .with(new CollidableComponent(true))
+//                .type(EntityTypes.PLAYER)
+//                .buildAndAttach();
         FXGL.getGameTimer().runAtInterval(() -> {
             int randPosX = ThreadLocalRandom.current().nextInt(60, FXGL.getGameScene().getAppWidth() -80);
             int randPosY = ThreadLocalRandom.current().nextInt(60, FXGL.getGameScene().getAppWidth() -80);
@@ -84,22 +85,31 @@ public class Game extends GameApplication{
     }
     @Override
     protected void initInput(){
-        FXGL.onKey(KeyCode.D, () -> player.translateX(5));
+//        FXGL.onKey(KeyCode.D, () -> player.translateX(5));
+//
+//        FXGL.onKey(KeyCode.A, () -> player.translateX(-5));
+//
+//        FXGL.onKey(KeyCode.W, () -> player.translateY(-5));
+//
+//        FXGL.onKey(KeyCode.S, () -> player.translateY(5));
+//        getInput().addAction(new UserAction("Shoot") {
+//            @Override
+//            protected void onActionBegin() {
+//                spawn("Bullet", player.getX() + 29, player.getY());
+//            }
+//        }, KeyCode.SPACE);
+//        FXGL.onKey(KeyCode.Q, () -> player.rotateBy(1));
+//        FXGL.onKey(KeyCode.E, () -> player.rotateBy(-1));
 
-        FXGL.onKey(KeyCode.A, () -> player.translateX(-5));
+        String direction;
+        Integer movementspeed = 200;
 
-        FXGL.onKey(KeyCode.W, () -> player.translateY(-5));
-
-        FXGL.onKey(KeyCode.S, () -> player.translateY(5));
-        getInput().addAction(new UserAction("Shoot") {
-            @Override
-            protected void onActionBegin() {
-                spawn("Bullet", player.getX() + 29, player.getY());
-            }
-        }, KeyCode.SPACE);
-        FXGL.onKey(KeyCode.Q, () -> player.rotateBy(1));
-        FXGL.onKey(KeyCode.E, () -> player.rotateBy(-1));
-
+//        getInput().addAction(new UserAction("Move up") {
+//            @Override
+//            protected void onActionBegin() {
+//                FXGL.player.moveUp();
+//            }
+//        }, KeyCode.W);
     }
     @Override
     protected void onPreInit() {
