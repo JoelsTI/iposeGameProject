@@ -10,12 +10,15 @@ import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
+import com.almasb.fxgl.dsl.components.RandomMoveComponent;
 import javafx.geometry.Point2D;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
+import static com.almasb.fxgl.core.math.FXGLMath.random;
 import static com.almasb.fxgl.dsl.FXGL.entityBuilder;
 
 /**
@@ -115,6 +118,7 @@ public class GameFactory implements EntityFactory {
         return FXGL.entityBuilder(data)
                 .bbox(new HitBox(BoundingShape.box(20, 20)))
                 .with(new GhostComponent(data.get("name"), data.getX(), data.getY()))
+                .with(new RandomMoveComponent(new Rectangle2D(0,0,615,615), random(50,120)))
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .type(EntityTypes.GHOST)

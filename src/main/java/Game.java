@@ -57,6 +57,7 @@ public class Game extends GameApplication{
         FXGL.getGameWorld().addEntityFactory(new GameFactory());
         FXGL.setLevelFromMap("templateLevel.tmx");
         player = getGameWorld().spawn("player");
+
     }
 
     @Override
@@ -144,22 +145,44 @@ public class Game extends GameApplication{
                 ghost.removeFromWorld();
             }
         });
+
+        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.GHOST) {
+            @Override
+            protected void onCollision(Entity player, Entity ghost) {
+                int lives = player.getComponent(Player.class).lostLife();
+                FXGL.inc("lives", -1);
+                if (lives == 0) {
+                    showMessage("Died!");
+                }
+                ghost.removeFromWorld();
+            }
+        });
     }
 
     @Override
     protected void initUI(){
-        Label myText = new Label("Hello There");
+        Label myText = new Label();
+        Label hp = new Label();
+
+        hp.setTranslateY(220);
+        hp.setTranslateX(200);
+        hp.setStyle("-fx-text-fill: white");
+        hp.textProperty().bind(FXGL.getWorldProperties().intProperty("lives").asString());
+
         myText.setStyle("-fx-text-fill: white");
         myText.setTranslateX(200);
         myText.setTranslateY(200);
         myText.textProperty().bind(FXGL.getWorldProperties().intProperty("kills").asString());
+
         FXGL.getGameScene().addUINode(myText);
+        FXGL.getGameScene().addUINode(hp);
         FXGL.getGameScene().setBackgroundColor(Color.BLACK);
     }
 
     @Override
     protected void initGameVars(Map<String, Object> vars){
         vars.put("kills", 0);
+        vars.put("lives", 3);
     }
     public static void main(String[] args) {
         launch(args);

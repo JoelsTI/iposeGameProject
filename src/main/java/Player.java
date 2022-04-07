@@ -13,6 +13,8 @@ public class Player extends Component{
     private Integer movementspeed = 200;
     private Integer rotationSpeed = 0;
 
+    private Integer lives = 3;
+
 
 
     public void toLeft() {
@@ -60,5 +62,17 @@ public class Player extends Component{
         spawn("bullet", new SpawnData(center.getX(), center.getY()).put("dir", dir.toPoint2D()));
     }
 
+    public int lostLife() {
+        this.setLives(this.getLives() - 1);
 
+        return this.getLives();
+    }
+
+    public Integer getLives() {
+        return lives;
+    }
+
+    public void setLives(Integer lives) {
+        this.lives = lives;
+    }
 }
