@@ -10,6 +10,8 @@ import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.CollisionHandler;
+import com.almasb.fxgl.physics.PhysicsComponent;
+import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.geometry.Point2D;
@@ -64,10 +66,14 @@ public class Game extends GameApplication{
     protected void initGame(){
         FXGL.getGameWorld().addEntityFactory(new GameFactory());
         FXGL.setLevelFromMap("templateLevel.tmx");
+        PhysicsComponent physics = new PhysicsComponent();
+        physics.setBodyType(BodyType.DYNAMIC);
         player = FXGL.entityBuilder()
                 .at(400, 400)
                 .viewWithBBox("-up-down.png")
+                .with(physics)
                 .with(new CollidableComponent(true))
+                .with(new Player())
                 .type(EntityTypes.PLAYER)
                 .buildAndAttach();
 
