@@ -5,6 +5,8 @@ import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import javafx.geometry.Point2D;
 
+import static com.almasb.fxgl.dsl.FXGL.spawn;
+
 public class Player extends Component{
     private PhysicsComponent physics;
     private String direction;
@@ -40,6 +42,14 @@ public class Player extends Component{
     public void stop() {
         physics.setVelocityX(0);
         physics.setVelocityY(0);
+    }
+
+    public void shoot() {
+        Point2D center = entity.getCenter().subtract(37/2.0, 13/2.0);
+
+        Vec2 dir = Vec2.fromAngle(entity.getRotation() - 90);
+
+        spawn("bullet", new SpawnData(center.getX(), center.getY()).put("dir", dir.toPoint2D()));
     }
 
     public void rotateLeft(){

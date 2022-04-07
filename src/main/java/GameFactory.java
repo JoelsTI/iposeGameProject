@@ -1,7 +1,11 @@
 import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.dsl.components.Effect;
+import com.almasb.fxgl.dsl.components.EffectComponent;
+import com.almasb.fxgl.dsl.components.OffscreenCleanComponent;
 import com.almasb.fxgl.dsl.components.ProjectileComponent;
 import com.almasb.fxgl.entity.*;
 import com.almasb.fxgl.entity.components.CollidableComponent;
+import com.almasb.fxgl.entity.components.TimeComponent;
 import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.physics.PhysicsComponent;
@@ -10,6 +14,9 @@ import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
+
+import static com.almasb.fxgl.dsl.FXGL.entityBuilder;
 
 /**
  * @author Almas Baimagambetov (almaslvl@gmail.com)
@@ -47,14 +54,40 @@ public class GameFactory implements EntityFactory {
 
     @Spawns("bullet")
     public Entity newBullet(SpawnData data) {
-
         Point2D dir = data.get("dir");
-        return FXGL.entityBuilder(data)
+        var effectComponent = new EffectComponent();
+        var e = entityBuilder(data)
                 .type(EntityTypes.BULLET)
-                .viewWithBBox(new Circle(10, 2, 10, Color.DARKRED))
-                .with(new CollidableComponent(true))
-                .with(new ProjectileComponent(dir, 300))
+                .viewWithBBox("bullet.png")
+                .with(new ProjectileComponent(dir, 500))
+                .with(new OffscreenCleanComponent())
+                .with(new TimeComponent())
+                .with(effectComponent)
+                .collidable()
                 .build();
+
+        e.setOnActive(() -> {
+            effectComponent.startEffect(new SuperSlowTimeEffect());
+        });
+
+        return e;
+    }
+
+    class SuperSlowTimeEffect extends Effect {
+
+        public SuperSlowTimeEffect() {
+            super(Duration.seconds(0.5));
+        }
+
+        @Override
+        public void onStart(Entity entity) {
+            entity.getComponent(TimeComponent.class).setValue(0.05);
+        }
+
+        @Override
+        public void onEnd(Entity entity) {
+            entity.getComponent(TimeComponent.class).setValue(3.0);
+        }
     }
 
     @Spawns("platform")

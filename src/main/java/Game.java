@@ -103,6 +103,16 @@ public class Game extends GameApplication{
                 player.getComponent(Player.class).stop();
             }
         }, KeyCode.S);
+        getInput().addAction(new UserAction("bullet") {
+            @Override
+            protected void onActionBegin() {
+                player.getComponent(Player.class).shoot();
+            }
+
+            protected void onActionEnd() {
+                player.getComponent(Player.class).stop();
+            }
+        }, KeyCode.SPACE);
 //        FXGL.onKey(KeyCode.D, () -> player.translateX(5));
 //
 //        FXGL.onKey(KeyCode.A, () -> player.translateX(-5));
