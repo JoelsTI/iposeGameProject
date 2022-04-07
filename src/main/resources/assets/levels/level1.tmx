@@ -51,6 +51,5 @@
   <object id="17" type="wall" x="45" y="654" width="981" height="54"/>
   <object id="18" type="wall" x="1034" y="0" width="32" height="702"/>
   <object id="19" type="wall" x="46" y="4" width="984" height="41"/>
-  <object id="29" type="boss" x="540" y="308" width="190" height="130"/>
  </objectgroup>
 </map>

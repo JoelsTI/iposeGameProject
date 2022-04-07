@@ -146,17 +146,24 @@ public class Game extends GameApplication{
     @Override
     public void onUpdate(double tpf) {
        int kills = FXGL.getWorldProperties().getInt("kills");
-        if(this.levelCounter == 1 && kills >= 6 ){
+        if(this.levelCounter == 1 && kills == 6 ){
             this.levelCounter++;
             System.out.println("Ga naar het volgende level!");
             FXGL.setLevelFromMap("level" + this.levelCounter + ".tmx");
             player = getGameWorld().spawn("player");
         }
-        else if(this.levelCounter == 2 && kills == 20 ){
+        else if(this.levelCounter == 2 && kills == 30 ){
             this.levelCounter++;
             System.out.println("Ga naar het volgende level!");
             FXGL.setLevelFromMap("level" + this.levelCounter + ".tmx");
             player = getGameWorld().spawn("player");
+        }
+        else if(this.levelCounter == 3 && kills ==  40){
+            this.levelCounter = 1;
+            System.out.println("BOSS VERSLAGEN");
+            player.removeFromWorld();
+            FXGL.getGameController().gotoMainMenu();
+
         }
 
     }

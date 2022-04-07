@@ -44,11 +44,11 @@
   <object id="15" type="ghost" x="310" y="464"/>
   <object id="16" type="ghost" x="310" y="546"/>
   <object id="17" type="ghost" x="196" y="584"/>
-  <object id="18" type="ghost" x="150" y="502"/>
-  <object id="19" type="ghost" x="110" y="340"/>
-  <object id="20" type="ghost" x="106" y="140"/>
-  <object id="21" type="ghost" x="148" y="262"/>
-  <object id="22" type="ghost" x="196" y="366"/>
+  <object id="18" type="ghost" x="550" y="502"/>
+  <object id="19" type="ghost" x="510" y="340"/>
+  <object id="20" type="ghost" x="506" y="140"/>
+  <object id="21" type="ghost" x="548" y="262"/>
+  <object id="22" type="ghost" x="596" y="366"/>
   <object id="23" type="ghost" x="384" y="410"/>
   <object id="24" type="ghost" x="538" y="414"/>
   <object id="25" type="ghost" x="670" y="432"/>
