@@ -32,7 +32,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class Game extends GameApplication{
-
+    double tijd = 0;
     private Entity player;
     private int levelCounter = 1;
 
@@ -145,6 +145,7 @@ public class Game extends GameApplication{
 
     @Override
     public void onUpdate(double tpf) {
+        inc("levelTime", tpf);
        int kills = FXGL.getWorldProperties().getInt("kills");
         if(this.levelCounter == 1 && kills == 6 ){
             this.levelCounter++;
@@ -152,17 +153,20 @@ public class Game extends GameApplication{
             FXGL.setLevelFromMap("level" + this.levelCounter + ".tmx");
             player = getGameWorld().spawn("player");
         }
-        else if(this.levelCounter == 2 && kills == 30 ){
+        else if(this.levelCounter == 2 && kills == 10 ){
             this.levelCounter++;
             System.out.println("Ga naar het volgende level!");
             FXGL.setLevelFromMap("level" + this.levelCounter + ".tmx");
             player = getGameWorld().spawn("player");
         }
-        else if(this.levelCounter == 3 && kills ==  40){
+        else if(this.levelCounter == 3 && kills ==  20){
             this.levelCounter = 1;
             System.out.println("BOSS VERSLAGEN");
             player.removeFromWorld();
             FXGL.getGameController().gotoMainMenu();
+            Duration userTime = Duration.seconds(getd("levelTime") );
+            tijd = userTime.toSeconds();
+            System.out.println(tijd);
 
         }
 
@@ -236,6 +240,7 @@ public class Game extends GameApplication{
     protected void initGameVars(Map<String, Object> vars){
         vars.put("kills", 0);
         vars.put("lives", 3);
+        vars.put("levelTime", 0.0);
     }
     public static void main(String[] args) {
         launch(args);
