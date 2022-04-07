@@ -36,8 +36,12 @@ public class Game extends GameApplication{
     protected void initSettings(GameSettings gameSettings) {
         gameSettings.setFullScreenFromStart(true);
         gameSettings.setFullScreenAllowed(true);
+        gameSettings.setWidth(15 * 70);
+        gameSettings.setHeight(10 * 70);
         gameSettings.setTitle("Javatar Game");
         gameSettings.setVersion("1.0");
+        gameSettings.setDeveloperMenuEnabled(true);
+    }
 
         gameSettings.setMainMenuEnabled(true);
         gameSettings.setSceneFactory(new SceneFactory(){

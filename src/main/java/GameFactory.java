@@ -29,6 +29,17 @@ public class GameFactory implements EntityFactory {
 //
 //    return entityBuilder(data)
 //    .type(EntityTypes.PLAYER)
+
+    @Spawns("Player")
+    public Entity newPlayer(SpawnData data){
+        return FXGL.entityBuilder(data)
+                .viewWithBBox("pepe.png")
+                .scale(0.2,0.2)
+                .with(new CollidableComponent(true))
+                .type(EntityTypes.PLAYER)
+                .build();
+    }
+
     @Spawns("Bullet")
     public Entity newBullet(SpawnData data) {
 
