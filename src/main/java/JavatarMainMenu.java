@@ -42,12 +42,13 @@ public class JavatarMainMenu extends FXGLMenu {
         borderPane.setStyle("-fx-background-image: url('https://images5.alphacoders.com/807/thumb-1920-807117.jpg')");
         borderPane.setMinWidth(FXGL.getAppWidth());
         borderPane.setMinHeight(FXGL.getAppHeight());
-        btnStart.setOnAction(e ->{
-            fireNewGame();
-        });
-        btnQuit.setOnAction(e ->{
-            fireExit();
-        });
+            btnStart.setOnAction(e -> {
+                if(textField.getLength() > 1) {
+                    System.out.println(textField.getText());
+                    fireNewGame();
+                }
+            });
+        btnQuit.setOnAction(e -> fireExit());
 
         btnStart.setStyle("-fx-background-color: green ");
         btnQuit.setStyle("-fx-background-color: green ");

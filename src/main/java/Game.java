@@ -128,7 +128,7 @@ public class Game extends GameApplication{
         }, KeyCode.E);
         getInput().addAction(new UserAction("bullet") {
             @Override
-            protected void onAction() {
+            protected void onActionBegin() {
                 player.getComponent(Player.class).shoot();
             }
 
