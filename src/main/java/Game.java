@@ -10,6 +10,8 @@ import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.CollisionHandler;
+import com.almasb.fxgl.physics.PhysicsComponent;
+import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.geometry.Point2D;
@@ -50,61 +52,57 @@ public class Game extends GameApplication{
         });
     }
 
-
-
-    protected void initScreenBounds() {
-        Entity walls = entityBuilder()
-                .type(EntityTypes.WALL)
-                .collidable()
-                .buildScreenBounds(150);
-
-        getGameWorld().addEntity(walls);
-    }
     @Override
     protected void initGame(){
         FXGL.getGameWorld().addEntityFactory(new GameFactory());
         FXGL.setLevelFromMap("templateLevel.tmx");
-        player = FXGL.entityBuilder()
-                .at(400, 400)
-                .viewWithBBox("-up-down.png")
-                .with(new CollidableComponent(true))
-                .type(EntityTypes.PLAYER)
-                .buildAndAttach();
-
-        FXGL.getGameTimer().runAtInterval(() -> {
-            int randPosX = ThreadLocalRandom.current().nextInt(60, FXGL.getGameScene().getAppWidth() -80);
-            int randPosY = ThreadLocalRandom.current().nextInt(60, FXGL.getGameScene().getAppWidth() -80);
-            FXGL.entityBuilder()
-                    .at(randPosX, randPosY)
-                    .viewWithBBox(new Rectangle(20, 20, Color.WHITE))
-                    .with(new CollidableComponent(true))
-                    .type(EntityTypes.ENTITEIT)
-                    .buildAndAttach();
-        }, Duration.millis(2000));
-
+        player = getGameWorld().spawn("Player");
     }
+
     @Override
     protected void initInput(){
-        FXGL.onKey(KeyCode.D, () -> player.translateX(5));
-
-        FXGL.onKey(KeyCode.A, () -> player.translateX(-5));
-
-        FXGL.onKey(KeyCode.W, () -> player.translateY(-5));
-
-        FXGL.onKey(KeyCode.S, () -> player.translateY(5));
-        getInput().addAction(new UserAction("Shoot") {
+        getInput().addAction(new UserAction("toLeft") {
             @Override
-            protected void onActionBegin() {
-                Point2D center = player.getCenter();//.subtract(37/2.0, 13/2.0);
-
-                Vec2 dir = Vec2.fromAngle(player.getRotation() - 90);
-                System.out.println(dir);
-                System.out.println(dir.toPoint2D());
-                spawn("Bullet", new SpawnData(center.getX(), center.getY()).put("dir", dir.toPoint2D()));
+            protected void onAction() {
+                player.getComponent(Player.class).toLeft();
             }
-        }, KeyCode.SPACE);
-        FXGL.onKey(KeyCode.E, () -> player.rotateBy(1));
-        FXGL.onKey(KeyCode.Q, () -> player.rotateBy(-1));
+            protected void onActionEnd() {
+                player.getComponent(Player.class).stop();
+            }
+        }, KeyCode.A);
+
+        getInput().addAction(new UserAction("toRight") {
+            @Override
+            protected void onAction() {
+                player.getComponent(Player.class).toRight();
+            }
+
+            protected void onActionEnd() {
+                player.getComponent(Player.class).stop();
+            }
+        }, KeyCode.D);
+//        FXGL.onKey(KeyCode.D, () -> player.translateX(5));
+//
+//        FXGL.onKey(KeyCode.A, () -> player.translateX(-5));
+//
+//        FXGL.onKey(KeyCode.W, () -> player.translateY(-5));
+//
+//        FXGL.onKey(KeyCode.S, () -> player.translateY(5));
+//        getInput().addAction(new UserAction("Shoot") {
+//            @Override
+//            protected void onActionBegin() {
+//                Point2D center = player.getCenter();//.subtract(37/2.0, 13/2.0);
+//
+//                Vec2 dir = Vec2.fromAngle(player.getRotation() - 90);
+//                System.out.println(dir);
+//                System.out.println(dir.toPoint2D());
+//                spawn("Bullet", new SpawnData(center.getX(), center.getY()).put("dir", dir.toPoint2D()));
+//            }
+//        }, KeyCode.SPACE);
+//        FXGL.onKey(KeyCode.E, () -> player.rotateBy(1));
+//        FXGL.onKey(KeyCode.Q, () -> player.rotateBy(-1));
+
+//        player.getComponent(Player.class).toLeft();
 
     }
     @Override
