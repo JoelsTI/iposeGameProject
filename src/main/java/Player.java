@@ -10,15 +10,23 @@ public class Player extends Component{
     private String direction;
     private Integer movementspeed = 200;
 
-
     public void toLeft() {
         direction = "Left";
         System.out.println(direction);
         physics.setVelocityX(-movementspeed);
     }
+
+    public void toRight() {
+        direction = "Right";
+        System.out.println(direction);
+        physics.setVelocityX(movementspeed);
+    }
+
     public void stop() {
         physics.setVelocityX(0);
+        physics.setVelocityY(0);
     }
+
     public void rotateLeft(){
         entity.rotateBy(-1);
     }
