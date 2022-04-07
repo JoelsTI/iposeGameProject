@@ -28,7 +28,6 @@ public class GhostComponent extends Component {
                 return;
             }
             PhysicsComponent physics = entity.getComponent(PhysicsComponent.class);
-
             int movementRandom = rand.nextInt(4);
 
 

@@ -109,11 +109,17 @@ public class Game extends GameApplication{
             protected void onAction() {
                 player.getComponent(Player.class).rotateLeft();
             }
+            protected void onActionEnd() {
+                player.getComponent(Player.class).rotateStop();
+            }
         }, KeyCode.Q);
         getInput().addAction(new UserAction("r_right") {
             @Override
             protected void onAction() {
                 player.getComponent(Player.class).rotateRight();
+            }
+            protected void onActionEnd() {
+                player.getComponent(Player.class).rotateStop();
             }
 
         }, KeyCode.E);

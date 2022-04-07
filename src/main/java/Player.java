@@ -56,6 +56,10 @@ public class Player extends Component{
         physics.setVelocityY(0);
     }
 
+    public void rotateStop() {
+        physics.setAngularVelocity(0);
+    }
+
     public void shoot() {
         Point2D center = entity.getCenter().subtract(37/2.0, 13/2.0);
         Vec2 dir = Vec2.fromAngle(entity.getRotation() - 90);

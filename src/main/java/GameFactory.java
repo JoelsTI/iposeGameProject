@@ -9,6 +9,7 @@ import com.almasb.fxgl.entity.components.TimeComponent;
 import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.physics.PhysicsComponent;
+import com.almasb.fxgl.physics.box2d.dynamics.BodyDef;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.dsl.components.RandomMoveComponent;
 import javafx.geometry.Point2D;
