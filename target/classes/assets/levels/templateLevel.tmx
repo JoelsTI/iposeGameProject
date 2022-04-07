@@ -51,7 +51,4 @@
   <object id="18" type="Muur" x="1034" y="0" width="32" height="702"/>
   <object id="19" type="Muur" x="46" y="4" width="984" height="41"/>
  </objectgroup>
- <objectgroup id="4" name="Speler">
-  <object id="20" type="Player" x="491" y="279" width="68" height="72"/>
- </objectgroup>
 </map>
