@@ -8,8 +8,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.beans.binding.StringBinding;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -29,16 +27,12 @@ public class JavatarMainMenu extends FXGLMenu {
 
     public BorderPane createLayout() {
         BorderPane borderPane = new BorderPane();
-        TextField textField = new TextField ();
         Button btnStart = new Button("Lekker spelen");
         Button btnQuit = new Button("Quit");
-        Label label = new Label("Username:");
         VBox vbox = new VBox(8);
-        textField.setPrefWidth(20);
-        textField.setMaxWidth(150);
-        vbox.getChildren().addAll(label, textField, btnStart, btnQuit);
+        vbox.getChildren().addAll(btnStart, btnQuit);
         vbox.setAlignment(Pos.CENTER);
-        borderPane.setStyle("-fx-background-image: url('https://www.atiramhotels.com/wp-content/uploads/2018/12/grey-dark-vintage-background-texture-299176_1080x675.jpg')");
+
         borderPane.setMinWidth(FXGL.getAppWidth());
         borderPane.setMinHeight(FXGL.getAppHeight());
         btnStart.setOnAction(e ->{
@@ -56,3 +50,25 @@ public class JavatarMainMenu extends FXGLMenu {
     }
 }
 
+//    protected Button createActionButton(StringBinding stringBinding, Runnable runnable){
+//        return new Button();
+//    }
+//
+//
+//    protected Node createBackground(double v, double h){
+//        return FXGL.texture("pepe.png");
+//    }
+//
+//    protected Node createProfileView(String s){
+//        return new Rectangle();
+//    }
+//
+//    protected Node createTitleView(String s){
+//        return new Rectangle();
+//    }
+//
+//    protected Node createVersionView(String s){
+//        return new Rectangle();
+//    }
+//
+//}
