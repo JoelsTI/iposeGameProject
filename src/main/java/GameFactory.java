@@ -46,7 +46,7 @@ public class GameFactory implements EntityFactory {
         physics.setBodyType(BodyType.DYNAMIC);
 
         return FXGL.entityBuilder(data)
-                .viewWithBBox("pepe.png")
+                .viewWithBBox("isaac.png")
                 .scale(0.2,0.2)
                 .with(physics)
                 .with(new CollidableComponent(true))

@@ -152,7 +152,8 @@ public class Game extends GameApplication{
                 int lives = player.getComponent(Player.class).lostLife();
                 FXGL.inc("lives", -1);
                 if (lives == 0) {
-                    showMessage("Died!");
+                    FXGL.getGameController().gotoMainMenu();
+
                 }
                 ghost.removeFromWorld();
             }
