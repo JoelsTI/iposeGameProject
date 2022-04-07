@@ -41,12 +41,12 @@ public class Player extends Component{
 
     public void rotateLeft(){
         direction = "r_left";
-        physics.setAngularVelocity(rotationSpeed - 20);
+        physics.setAngularVelocity(rotationSpeed - 40);
     }
 
     public void rotateRight(){
         direction = "r_right";
-        physics.setAngularVelocity(rotationSpeed + 20);
+        physics.setAngularVelocity(rotationSpeed + 40);
     }
 
     public void stop() {
