@@ -5,10 +5,15 @@ import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.SimpleGameMenu;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.CollisionHandler;
+import com.almasb.fxgl.texture.AnimatedTexture;
+import com.almasb.fxgl.texture.AnimationChannel;
+import javafx.geometry.Point2D;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
@@ -41,8 +46,6 @@ public class Game extends GameApplication{
             }
         });
     }
-
-
     @Override
     protected void initGame(){
         getGameWorld().addEntityFactory(new GameFactory());
@@ -52,6 +55,7 @@ public class Game extends GameApplication{
                 .with(new CollidableComponent(true))
                 .type(EntityTypes.PLAYER)
                 .buildAndAttach();
+
         FXGL.getGameTimer().runAtInterval(() -> {
             int randPosX = ThreadLocalRandom.current().nextInt(60, FXGL.getGameScene().getAppWidth() -80);
             int randPosY = ThreadLocalRandom.current().nextInt(60, FXGL.getGameScene().getAppWidth() -80);
@@ -76,11 +80,23 @@ public class Game extends GameApplication{
         getInput().addAction(new UserAction("Shoot") {
             @Override
             protected void onActionBegin() {
-                getGameWorld().spawn("Bullet", player.getX() + 28, player.getY());
-            }
-        }, KeyCode.E);
-    }
+                Point2D center = player.getCenter();//.subtract(37/2.0, 13/2.0);
 
+                Vec2 dir = Vec2.fromAngle(player.getRotation() - 90);
+                System.out.println(dir);
+                System.out.println(dir.toPoint2D());
+                spawn("Bullet", new SpawnData(center.getX(), center.getY()).put("dir", dir.toPoint2D()));
+            }
+        }, KeyCode.SPACE);
+        FXGL.onKey(KeyCode.E, () -> player.rotateBy(1));
+        FXGL.onKey(KeyCode.Q, () -> player.rotateBy(-1));
+
+    }
+    @Override
+    protected void onPreInit() {
+        getSettings().setGlobalMusicVolume(100);
+        loopBGM("test.mp3");
+    }
     @Override
     protected void initPhysics(){
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.BULLET, EntityTypes.ENTITEIT) {
