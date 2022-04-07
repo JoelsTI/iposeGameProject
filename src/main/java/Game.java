@@ -148,14 +148,13 @@ public class Game extends GameApplication{
 
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.GHOST) {
             @Override
-            protected void onCollision(Entity player, Entity ghost) {
+            protected void onCollisionEnd(Entity player, Entity ghost) {
                 int lives = player.getComponent(Player.class).lostLife();
                 FXGL.inc("lives", -1);
                 if (lives == 0) {
                     FXGL.getGameController().gotoMainMenu();
-
                 }
-                ghost.removeFromWorld();
+
             }
         });
     }
