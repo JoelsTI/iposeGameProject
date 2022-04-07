@@ -11,32 +11,42 @@ public class Player extends Component{
     private PhysicsComponent physics;
     private String direction;
     private Integer movementspeed = 200;
-
+    private Integer rotationSpeed = 0;
 
 
 
     public void toLeft() {
-        direction = "Left";
+        direction = "left";
         System.out.println(direction);
         physics.setVelocityX(-movementspeed);
     }
 
     public void toRight() {
-        direction = "Right";
+        direction = "right";
         System.out.println(direction);
         physics.setVelocityX(movementspeed);
     }
 
     public void toUp() {
-        direction = "Up";
+        direction = "up";
         System.out.println(direction);
         physics.setVelocityY(-movementspeed);
     }
 
     public void toDown() {
-        direction = "Down";
+        direction = "down";
         System.out.println(direction);
         physics.setVelocityY(movementspeed);
+    }
+
+    public void rotateLeft(){
+        direction = "r_left";
+        physics.setAngularVelocity(rotationSpeed - 20);
+    }
+
+    public void rotateRight(){
+        direction = "r_right";
+        physics.setAngularVelocity(rotationSpeed + 20);
     }
 
     public void stop() {
@@ -52,10 +62,5 @@ public class Player extends Component{
         spawn("bullet", new SpawnData(center.getX(), center.getY()).put("dir", dir.toPoint2D()));
     }
 
-    public void rotateLeft(){
-        entity.rotateBy(-1);
-    }
-    public void rotateRight(){
-        entity.rotateBy(1);
-    }
+
 }
