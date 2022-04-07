@@ -41,8 +41,6 @@ public class Game extends GameApplication{
         gameSettings.setTitle("Javatar Game");
         gameSettings.setVersion("1.0");
         gameSettings.setDeveloperMenuEnabled(true);
-    }
-
         gameSettings.setMainMenuEnabled(true);
         gameSettings.setSceneFactory(new SceneFactory(){
             @NotNull
@@ -51,6 +49,9 @@ public class Game extends GameApplication{
             }
         });
     }
+
+
+
     protected void initScreenBounds() {
         Entity walls = entityBuilder()
                 .type(EntityTypes.WALL)
