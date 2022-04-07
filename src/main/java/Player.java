@@ -7,9 +7,14 @@ import javafx.geometry.Point2D;
 
 public class Player extends Component{
     private PhysicsComponent physics;
-    public void left() {
-        getEntity().setScaleX(-1);
-        physics.setVelocityX(-170);
+    private String direction;
+    private Integer movementspeed = 200;
+
+
+    public void toLeft() {
+        direction = "Left";
+        System.out.println(direction);
+        physics.setVelocityX(-movementspeed);
     }
     public void stop() {
         physics.setVelocityX(0);

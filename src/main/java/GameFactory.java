@@ -32,10 +32,15 @@ public class GameFactory implements EntityFactory {
 
     @Spawns("Player")
     public Entity newPlayer(SpawnData data){
+        PhysicsComponent physics = new PhysicsComponent();
+        physics.setBodyType(BodyType.DYNAMIC);
+
         return FXGL.entityBuilder(data)
                 .viewWithBBox("pepe.png")
                 .scale(0.2,0.2)
+                .with(physics)
                 .with(new CollidableComponent(true))
+                .with(new Player())
                 .type(EntityTypes.PLAYER)
                 .build();
     }
