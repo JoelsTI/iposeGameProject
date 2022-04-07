@@ -113,28 +113,6 @@ public class Game extends GameApplication{
                 player.getComponent(Player.class).stop();
             }
         }, KeyCode.SPACE);
-//        FXGL.onKey(KeyCode.D, () -> player.translateX(5));
-//
-//        FXGL.onKey(KeyCode.A, () -> player.translateX(-5));
-//
-//        FXGL.onKey(KeyCode.W, () -> player.translateY(-5));
-//
-//        FXGL.onKey(KeyCode.S, () -> player.translateY(5));
-//        getInput().addAction(new UserAction("Shoot") {
-//            @Override
-//            protected void onActionBegin() {
-//                Point2D center = player.getCenter();//.subtract(37/2.0, 13/2.0);
-//
-//                Vec2 dir = Vec2.fromAngle(player.getRotation() - 90);
-//                System.out.println(dir);
-//                System.out.println(dir.toPoint2D());
-//                spawn("Bullet", new SpawnData(center.getX(), center.getY()).put("dir", dir.toPoint2D()));
-//            }
-//        }, KeyCode.SPACE);
-//        FXGL.onKey(KeyCode.E, () -> player.rotateBy(1));
-//        FXGL.onKey(KeyCode.Q, () -> player.rotateBy(-1));
-
-//        player.getComponent(Player.class).toLeft();
 
     }
     @Override
@@ -147,12 +125,12 @@ public class Game extends GameApplication{
         //gravity 0 voor 2d game
         getPhysicsWorld().setGravity(0,0);
 
-        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.BULLET, EntityTypes.ENTITEIT) {
+        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.BULLET, EntityTypes.GHOST) {
             @Override
-            protected void onCollision(Entity bullet, Entity entiteit) {
+            protected void onCollision(Entity bullet, Entity ghost) {
                 FXGL.inc("kills", +1);
                 bullet.removeFromWorld();
-                entiteit.removeFromWorld();
+                ghost.removeFromWorld();
             }
         });
     }
