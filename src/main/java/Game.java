@@ -164,6 +164,21 @@ public class Game extends GameApplication{
 
             }
         });
+        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.PLAYER, EntityTypes.BOSS) {
+            @Override
+            protected void onCollisionEnd(Entity player, Entity boss) {
+                super.onCollisionEnd(player, boss);
+                FXGL.inc("lives",-2);
+            }
+        });
+        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.BULLET, EntityTypes.BOSS) {
+            @Override
+            protected void onCollision(Entity bullet, Entity boss) {
+                FXGL.inc("kills", +10);
+                bullet.removeFromWorld();
+                boss.removeFromWorld();
+            }
+        });
     }
 
     @Override

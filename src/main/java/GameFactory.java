@@ -111,6 +111,21 @@ public class GameFactory implements EntityFactory {
                 .build();
     }
 
+
+    @Spawns("boss")
+    public Entity spawnBoss(SpawnData data){
+        PhysicsComponent physics = new PhysicsComponent();
+        physics.setBodyType(BodyType.DYNAMIC);
+
+        return FXGL.entityBuilder(data)
+                .bbox(new HitBox(BoundingShape.box(40, 40)))
+                .with(new BosComponent(data.get("name"), data.getX(), data.getY()))
+                .with(new RandomMoveComponent(new Rectangle2D(0,0,615,615), random(50,120)))
+                .with(physics)
+                .with(new CollidableComponent(true))
+                .type(EntityTypes.BOSS)
+                .build();
+    }
     @Spawns("ghost")
     public Entity spawnGhost(SpawnData data){
         PhysicsComponent physics = new PhysicsComponent();
