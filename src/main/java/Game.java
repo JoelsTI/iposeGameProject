@@ -56,7 +56,7 @@ public class Game extends GameApplication{
     protected void initGame(){
         FXGL.getGameWorld().addEntityFactory(new GameFactory());
         FXGL.setLevelFromMap("templateLevel.tmx");
-        player = getGameWorld().spawn("Player");
+        player = getGameWorld().spawn("player");
     }
 
     @Override
@@ -112,6 +112,9 @@ public class Game extends GameApplication{
     }
     @Override
     protected void initPhysics(){
+        //gravity 0 voor 2d game
+        getPhysicsWorld().setGravity(0,0);
+
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.BULLET, EntityTypes.ENTITEIT) {
             @Override
             protected void onCollision(Entity bullet, Entity entiteit) {

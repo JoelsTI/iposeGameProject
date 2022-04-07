@@ -30,7 +30,7 @@ public class GameFactory implements EntityFactory {
 //    return entityBuilder(data)
 //    .type(EntityTypes.PLAYER)
 
-    @Spawns("Player")
+    @Spawns("player")
     public Entity newPlayer(SpawnData data){
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(BodyType.DYNAMIC);
@@ -45,7 +45,7 @@ public class GameFactory implements EntityFactory {
                 .build();
     }
 
-    @Spawns("Bullet")
+    @Spawns("bullet")
     public Entity newBullet(SpawnData data) {
 
         Point2D dir = data.get("dir");
@@ -66,7 +66,7 @@ public class GameFactory implements EntityFactory {
                 .build();
     }
 
-    @Spawns("Muur")
+    @Spawns("wall")
     public Entity newMuur(SpawnData data){
         return FXGL.entityBuilder(data)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
@@ -74,13 +74,17 @@ public class GameFactory implements EntityFactory {
                 .build();
     }
 
-    @Spawns("Ghost")
+    @Spawns("ghost")
     public Entity spawnGhost(SpawnData data){
+        PhysicsComponent physics = new PhysicsComponent();
+        physics.setBodyType(BodyType.DYNAMIC);
+
         return FXGL.entityBuilder(data)
-                .type(EntityTypes.GHOST)
                 .bbox(new HitBox(BoundingShape.box(20, 20)))
                 .with(new GhostComponent(data.get("name"), data.getX(), data.getY()))
-                .collidable()
+                .with(physics)
+                .with(new CollidableComponent(true))
+                .type(EntityTypes.GHOST)
                 .build();
     }
 
