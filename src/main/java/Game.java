@@ -58,6 +58,7 @@ public class Game extends GameApplication{
         FXGL.setLevelFromMap("templateLevel.tmx");
         player = getGameWorld().spawn("player");
 
+
     }
 
     @Override
@@ -136,7 +137,7 @@ public class Game extends GameApplication{
     }
     @Override
     protected void onPreInit() {
-        getSettings().setGlobalMusicVolume(100);
+        getSettings().setGlobalMusicVolume(30);
         loopBGM("test.mp3");
     }
     @Override
