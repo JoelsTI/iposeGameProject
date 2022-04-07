@@ -34,5 +34,3 @@ public class Player extends Component{
         entity.rotateBy(1);
     }
 }
-
-
