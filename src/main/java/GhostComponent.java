@@ -16,7 +16,7 @@ public class GhostComponent extends Component {
     public GhostComponent(String name, double x, double y) {
         Texture left = FXGL.texture(name + "-left.png");
         Texture rigth = FXGL.texture(name + "-right.png");
-        upDown = FXGL.texture(name + "-up-down.png");
+        upDown = FXGL.texture(name + "monster.png");
     }
 
     @Override

@@ -169,6 +169,11 @@ public class Game extends GameApplication{
             System.out.println(tijd);
 
         }
+        else if(this.levelCounter == 3 && kills == 40 ){
+            this.levelCounter++;
+
+        }
+
 
     }
 
@@ -218,21 +223,33 @@ public class Game extends GameApplication{
 
     @Override
     protected void initUI(){
-        Label myText = new Label();
+        Label kills = new Label();
         Label hp = new Label();
-        Label hpText = new Label();
+        Label hpText = new Label("Lives:");
+        Label killsText = new Label("Kills:");
+
         hp.setTranslateY(10);
-        hp.setTranslateX(10);
+        hp.setTranslateX(50);
         hp.setStyle("-fx-text-fill: white");
         hp.textProperty().bind(FXGL.getWorldProperties().intProperty("lives").asString());
 
-        myText.setStyle("-fx-text-fill: white");
-        myText.setTranslateX(10);
-        myText.setTranslateY(30);
-        myText.textProperty().bind(FXGL.getWorldProperties().intProperty("kills").asString());
+        hpText.setTranslateY(10);
+        hpText.setTranslateX(20);
+        hpText.setStyle("-fx-text-fill: white");
 
-        FXGL.getGameScene().addUINode(myText);
+        kills.setStyle("-fx-text-fill: white");
+        kills.setTranslateY(25);
+        kills.setTranslateX(45);
+        kills.textProperty().bind(FXGL.getWorldProperties().intProperty("kills").asString());
+
+        killsText.setTranslateY(25);
+        killsText.setTranslateX(20);
+        killsText.setStyle("-fx-text-fill: white");
+
+        FXGL.getGameScene().addUINode(kills);
         FXGL.getGameScene().addUINode(hp);
+        FXGL.getGameScene().addUINode(hpText);
+        FXGL.getGameScene().addUINode(killsText);
         FXGL.getGameScene().setBackgroundColor(Color.BLACK);
     }
 

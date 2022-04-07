@@ -133,7 +133,7 @@ public class GameFactory implements EntityFactory {
 
         return FXGL.entityBuilder(data)
                 .bbox(new HitBox(BoundingShape.box(20, 20)))
-                .scale(2, 2)
+                .scale(0.5, 0.5)
                 .with(new GhostComponent(data.get("name"), data.getX(), data.getY()))
                 .with(new RandomMoveComponent(new Rectangle2D(0,0,615,615), random(50,120)))
                 .with(physics)
