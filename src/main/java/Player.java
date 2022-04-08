@@ -13,7 +13,7 @@ public class Player extends Component{
     private Integer movementspeed = 200;
     private Integer rotationSpeed = 0;
 
-    private Integer lives = 3;
+    private Integer lives = 5;
 
 
 
