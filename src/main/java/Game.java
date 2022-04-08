@@ -178,10 +178,11 @@ public class Game extends GameApplication{
             System.out.println(tijd + " seconden over de game gedaan");
             // Assigning the content of the file
             String text
-                    =String.valueOf(tijd);
+                    =String.valueOf(tijd) + " seconden gespeeld";
             try {
                 FileWriter myWriter = new FileWriter("C:\\Users\\Joel\\Desktop\\FXGLGames-master\\VERBETERING\\src\\main\\java\\score.txt", true);
                 myWriter.append(text);
+                myWriter.append("\n--------------------------------------------------------");
                 myWriter.append("\n");
                 myWriter.close();
                 System.out.println("Successfully wrote to the file.");
