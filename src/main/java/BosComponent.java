@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class BosComponent extends Component {
     private final Texture upDown;
-    private Integer bossLives = 3;
+    private Integer bossLives = 30;
     private Integer movementspeed = 200;
 
     public BosComponent(String name, double x, double y) {

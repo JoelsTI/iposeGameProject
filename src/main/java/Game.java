@@ -259,9 +259,9 @@ public class Game extends GameApplication{
     @Override
     protected void initGameVars(Map<String, Object> vars){
         vars.put("kills", 0);
-        vars.put("lives", 3);
+        vars.put("lives", 5);
         vars.put("levelTime", 0.0);
-        vars.put("bossLives", 3);
+        vars.put("bossLives", 30);
     }
     public static void main(String[] args) {
         launch(args);
