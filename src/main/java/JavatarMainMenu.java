@@ -18,6 +18,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class JavatarMainMenu extends FXGLMenu {
 
     public JavatarMainMenu() {
@@ -45,6 +48,19 @@ public class JavatarMainMenu extends FXGLMenu {
             btnStart.setOnAction(e -> {
                 if(textField.getLength() > 1) {
                     System.out.println(textField.getText());
+                    // Assigning the content of the file
+                    String text
+                            = textField.getText();
+                    try {
+                        FileWriter myWriter = new FileWriter("C:\\Users\\Joel\\Desktop\\FXGLGames-master\\VERBETERING\\src\\main\\java\\score.txt", true);
+                        myWriter.append(text);
+                        myWriter.append("\n");
+                        myWriter.close();
+                        System.out.println("Successfully wrote to the file.");
+                    } catch (IOException a) {
+                        System.out.println("An error occurred.");
+                        a.printStackTrace();
+                    }
                     fireNewGame();
                 }
             });

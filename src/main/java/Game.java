@@ -15,6 +15,7 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -26,15 +27,21 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
+
 public class Game extends GameApplication{
     double tijd = 0;
     private Entity player;
     private int levelCounter = 1;
+
 
     @Override
     protected void initSettings(GameSettings gameSettings) {
@@ -128,7 +135,7 @@ public class Game extends GameApplication{
         }, KeyCode.E);
         getInput().addAction(new UserAction("bullet") {
             @Override
-            protected void onActionBegin() {
+            protected void onAction() {
                 player.getComponent(Player.class).shoot();
             }
 
@@ -139,7 +146,7 @@ public class Game extends GameApplication{
     }
     @Override
     protected void onPreInit() {
-        getSettings().setGlobalMusicVolume(0);
+        getSettings().setGlobalMusicVolume(3);
         loopBGM("test.mp3");
     }
 
@@ -165,13 +172,29 @@ public class Game extends GameApplication{
             player.removeFromWorld();
             FXGL.getGameController().gotoMainMenu();
             Duration userTime = Duration.seconds(getd("levelTime") );
-            tijd = userTime.toSeconds();
+            tijd = userTime.toMillis();
             tijd = Math.round(tijd);
-            System.out.println(tijd);
+            tijd = tijd / 1000;
+            System.out.println(tijd + " seconden over de game gedaan");
+            // Assigning the content of the file
+            String text
+                    =String.valueOf(tijd);
+            try {
+                FileWriter myWriter = new FileWriter("C:\\Users\\Joel\\Desktop\\FXGLGames-master\\VERBETERING\\src\\main\\java\\score.txt", true);
+                myWriter.append(text);
+                myWriter.append("\n");
+                myWriter.close();
+                System.out.println("Successfully wrote to the file.");
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+
+        }
         }
 
 
-    }
+
 
     @Override
     protected void initPhysics(){
@@ -256,6 +279,7 @@ public class Game extends GameApplication{
         vars.put("levelTime", 0.0);
     }
     public static void main(String[] args) {
+
         launch(args);
 
     }
