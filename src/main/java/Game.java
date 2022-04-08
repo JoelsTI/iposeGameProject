@@ -210,9 +210,13 @@ public class Game extends GameApplication{
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityTypes.BULLET, EntityTypes.BOSS) {
             @Override
             protected void onCollision(Entity bullet, Entity boss) {
-                FXGL.inc("kills", +10);
                 bullet.removeFromWorld();
-                boss.removeFromWorld();
+                int bossLives = boss.getComponent(BosComponent.class).lostLife();
+                FXGL.inc("bossLives",-1);
+                if (bossLives == 0) {
+                    FXGL.inc("kills", +10);
+                    boss.removeFromWorld();
+                }
             }
         });
     }
@@ -223,6 +227,7 @@ public class Game extends GameApplication{
         Label hp = new Label();
         Label hpText = new Label("Lives:");
         Label killsText = new Label("Kills:");
+        Label bossHP = new Label("bossLives");
 
         hp.setTranslateY(10);
         hp.setTranslateX(50);
@@ -242,6 +247,8 @@ public class Game extends GameApplication{
         killsText.setTranslateX(20);
         killsText.setStyle("-fx-text-fill: white");
 
+        bossHP.textProperty().bind(FXGL.getWorldProperties().intProperty("bossLives").asString());
+
         FXGL.getGameScene().addUINode(kills);
         FXGL.getGameScene().addUINode(hp);
         FXGL.getGameScene().addUINode(hpText);
@@ -254,6 +261,7 @@ public class Game extends GameApplication{
         vars.put("kills", 0);
         vars.put("lives", 3);
         vars.put("levelTime", 0.0);
+        vars.put("bossLives", 3);
     }
     public static void main(String[] args) {
         launch(args);
