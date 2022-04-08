@@ -45,8 +45,6 @@ public class Game extends GameApplication{
 
     @Override
     protected void initSettings(GameSettings gameSettings) {
-        gameSettings.setFullScreenFromStart(true);
-        gameSettings.setFullScreenAllowed(true);
         gameSettings.setWidth(15 * 70);
         gameSettings.setHeight(10 * 70);
         gameSettings.setTitle("Javatar Game");
@@ -135,7 +133,7 @@ public class Game extends GameApplication{
         }, KeyCode.E);
         getInput().addAction(new UserAction("bullet") {
             @Override
-            protected void onAction() {
+            protected void onActionBegin() {
                 player.getComponent(Player.class).shoot();
             }
 
@@ -190,7 +188,22 @@ public class Game extends GameApplication{
                 System.out.println("An error occurred.");
                 e.printStackTrace();
             }
+        }
+        Label bossHP = new Label();
+        Label bossText = new Label("Boss hp:");
 
+        bossHP.setStyle("-fx-text-fill: white");
+        bossHP.setTranslateY(40);
+        bossHP.setTranslateX(65);
+        bossHP.textProperty().bind(FXGL.getWorldProperties().intProperty("bossLives").asString());
+
+        bossText.setTranslateY(40);
+        bossText.setTranslateX(20);
+        bossText.setStyle("-fx-text-fill: white");
+
+        if(this.levelCounter == 3){
+            FXGL.getGameScene().addUINode(bossHP);
+            FXGL.getGameScene().addUINode(bossText);
         }
         }
 
@@ -215,8 +228,19 @@ public class Game extends GameApplication{
             protected void onCollisionEnd(Entity player, Entity ghost) {
                 int lives = player.getComponent(Player.class).lostLife();
                 FXGL.inc("lives", -1);
-                if (lives == 0) {
+                if (lives <= 0) {
                     FXGL.getGameController().gotoMainMenu();
+                    try {
+                        FileWriter myWriter = new FileWriter("C:\\Users\\Joel\\Desktop\\FXGLGames-master\\VERBETERING\\src\\main\\java\\score.txt", true);
+                        myWriter.append("DOOD GEGAAN! WAT EEN NOOB!");
+                        myWriter.append("\n--------------------------------------------------------");
+                        myWriter.append("\n");
+                        myWriter.close();
+                        System.out.println("Successfully wrote to the file.");
+                    } catch (IOException e) {
+                        System.out.println("An error occurred.");
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -225,9 +249,22 @@ public class Game extends GameApplication{
             protected void onCollisionEnd(Entity player, Entity boss) {
                 super.onCollisionEnd(player, boss);
                 int lives = player.getComponent(Player.class).lostLife();
-                FXGL.inc("lives",-2);
-                if (lives == 0) {
+                FXGL.inc("lives",-1);
+                if (lives <= 0) {
+                    System.out.println(lives);
                     FXGL.getGameController().gotoMainMenu();
+                    try {
+                        FileWriter myWriter = new FileWriter("C:\\Users\\Joel\\Desktop\\FXGLGames-master\\VERBETERING\\src\\main\\java\\score.txt", true);
+                        myWriter.append("DOOD GEGAAN! WAT EEN NOOB!");
+                        myWriter.append("\n--------------------------------------------------------");
+                        myWriter.append("\n");
+                        myWriter.close();
+                        System.out.println("Successfully wrote to the file.");
+                    } catch (IOException e) {
+                        System.out.println("An error occurred.");
+                        e.printStackTrace();
+                    }
+
                 }
             }
         });
@@ -288,8 +325,6 @@ public class Game extends GameApplication{
         vars.put("bossLives", 30);
     }
     public static void main(String[] args) {
-
         launch(args);
-
     }
 }
